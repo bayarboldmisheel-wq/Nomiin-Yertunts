@@ -1,0 +1,194 @@
+/* =========================================
+   Номын Ертөнц — Админ модулийн загвар (admin.css)
+   page-adminTohirgoo хуудас (admin.html-аас ачигддаг) болон
+   админ удирдлагын жагсаалт/карт, түрээс, зурвас, хүргэлтийн стиль.
+   index.html <head> дэх <link rel="stylesheet" href="admin.css"> холоор ачаална.
+   Хэрэглэгч/админ хуваалцдаг нийтлэг стиль style.css дотор байрлана.
+   ========================================= */
+
+.admin-garchig { color:#7a1f14; margin:18px 0 8px; text-align:center; }
+
+#adminPanel h4 { margin:14px 0 8px; color:#7a3b2e; font-size:15px; }
+
+.admin-ord { border:2px solid #e8b4a0; border-radius:12px; padding:10px 12px; margin-bottom:10px; text-align:left; background:#fff8f4; font-size:13px; }
+
+.admin-ord .z-dugaar { font-weight:800; }
+
+.admin-ord .z-ognoo { font-size:12px; color:#8a6d5b; }
+
+.admin-stage { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+
+.admin-stage button { font-size:12px; padding:6px 12px; }
+
+.admin-stage button.идэвхтэй { outline:3px solid rgba(217,106,127,.45); }
+
+.admin-user { display:flex; gap:10px; align-items:center; border-bottom:1px solid #eee; padding:8px 2px; font-size:13px; text-align:left; }
+
+.admin-user .au-avatar { width:34px; height:34px; border-radius:50%; background:#7a3b2e; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+
+.admin-user .au-avatar img { width:100%; height:100%; object-fit:cover; }
+
+body.бараан .admin-ord { background:#241a14; }
+
+.admin-nom { border:1px solid #eee; border-radius:12px; padding:10px; margin-bottom:8px; font-size:13px; background:#fff; text-align:left; }
+
+.admin-nom strong { display:block; }
+
+.admin-nom .an-row { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; align-items:center; }
+
+.admin-nom select, .admin-nom input { width:auto; flex:1; min-width:110px; padding:7px 10px; font-size:13px; }
+
+.admin-nom button { font-size:12px; padding:7px 12px; }
+
+.admin-featured { font-size:13px; background:#fdf0e3; border-radius:12px; padding:10px 12px; margin-top:8px; }
+
+.admin-featured button { font-size:12px; padding:5px 12px; margin-left:6px; }
+
+.kart-tovchnuud .admin-ustgah { background:#fff; color:#a00; border:2px solid #f0aaaa; }
+
+body.бараан .admin-nom { background:#241a14; }
+
+#adminPanel { scroll-margin-top:90px; }
+
+.admin-filter { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+
+.admin-filter input, .admin-filter select { flex:1; min-width:150px; }
+
+.admin-hailt { margin:0; }
+
+.rent-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:10px; }
+
+.rent-stat { background:#fff; border:2px solid #fed7aa; border-radius:12px; padding:8px 10px; text-align:center; }
+
+.rent-stat strong { display:block; font-size:20px; color:#7a3b2e; }
+
+.rent-stat small { font-size:12px; color:#8a6d5b; }
+
+.rent-stat.анхааруулга { border-color:#f0aaaa; background:#fdf0f0; }
+
+.rent-stat.анхааруулга strong { color:#a00; }
+
+.admin-rent { border:2px solid #b9c8e8; border-radius:12px; padding:10px 12px; margin-bottom:10px; text-align:left; background:#f7faff; font-size:13px; }
+
+.admin-rent.хугацаа-хэтэрсэн { border-color:#e05a5a; background:#fdf0f0; box-shadow:0 0 0 3px rgba(224,90,90,.25); }
+
+.admin-rent .z-dugaar { font-weight:800; }
+
+.admin-rent .z-ognoo { font-size:12px; color:#8a6d5b; }
+
+.rent-stage { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+
+.rent-stage button { font-size:12px; padding:6px 12px; }
+
+.delivery-row { display:flex; gap:8px; align-items:center; border-bottom:1px solid #eee; padding:8px 2px; font-size:13px; text-align:left; flex-wrap:wrap; }
+
+.delivery-row strong { flex:1; min-width:120px; }
+
+.delivery-row input[type="number"] { width:110px; flex:none; }
+
+.delivery-row button { font-size:12px; padding:6px 12px; }
+
+.admin-check { display:flex; gap:8px; flex-wrap:wrap; background:#fff; border:2px solid #fed7aa; border-radius:12px; padding:8px 12px; }
+
+.admin-check label { flex-direction:row; align-items:center; gap:6px; font-weight:400; }
+
+.admin-check input { width:18px; height:18px; accent-color:#d96a7f; }
+
+body.бараан .rent-stat, body.бараан .admin-rent { background:#241a14; }
+
+body.бараан .rent-stat strong { color:#ffd9a8; }
+
+@media (max-width:700px) { .rent-stats { grid-template-columns:repeat(2,1fr); } }
+
+/* --- Админ: захиалга устгах + зурвасын хайрцаг --- */
+.admin-ord-del { font-size:12px; padding:6px 12px; background:#fff; color:#a00; border:2px solid #f0aaaa; margin-left:6px; }
+
+.admin-ord-del:hover { background:#fde8e8; border-color:#a00; }
+
+.admin-next { font-size:12px; padding:6px 12px; margin-top:8px; width:100%; }
+
+.admin-msg { border:2px solid #b9c8e8; background:#f2f6fd; border-radius:12px; padding:10px 14px; margin-bottom:8px; font-size:13px; text-align:left; }
+
+.admin-msg strong { display:block; font-size:14px; color:#1a2340; }
+
+.admin-msg small { color:#8a6d5b; }
+
+.admin-msg p { margin:6px 0; white-space:pre-wrap; }
+
+.admin-msg button { font-size:12px; padding:5px 12px; }
+
+body.бараан .admin-msg { background:#241a14; border-color:#4a5a7a; }
+
+body.бараан .admin-msg strong { color:#ffe9d2; }
+
+body.бараан .admin-ord-del { background:#241a14; }
+
+.admin-stock-step { display:flex; gap:4px; align-items:center; }
+
+.admin-stock-step button { font-size:14px; padding:4px 10px; line-height:1; }
+
+/* --- Админ: ангилал / зохиолч удирдах --- */
+.admin-cat-row { display:flex; gap:8px; align-items:center; background:#fff; border:2px solid #ead9c8; border-radius:12px; padding:8px 12px; margin-bottom:8px; flex-wrap:wrap; }
+
+.admin-cat-row .k-ner { flex:1; min-width:120px; font-weight:700; }
+
+.admin-cat-row .k-too { font-size:12px; color:#8a6d5b; }
+
+.admin-cat-row button { font-size:12px; padding:7px 12px; }
+
+.admin-cat-row input[type="text"], .admin-cat-row select { flex:1; min-width:140px; padding:7px 10px; font-size:13px; }
+
+body.бараан .admin-cat-row { background:#241a14; border-color:#4a352c; }
+
+.admin-tohirgoo-bar { background:#1e293b; color:#fff; display:flex; align-items:center; gap:12px; padding:14px 16px; position:sticky; top:0; z-index:5; }
+
+.admin-tohirgoo-bar h2 { color:#fff; margin:0; font-size:18px; text-align:left; }
+
+.admin-tohirgoo-bar h2::after { display:none; }
+
+.admin-back-btn { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:none; display:flex; align-items:center; justify-content:center; font-size:18px; padding:0; box-shadow:none; }
+
+.admin-back-btn::after { display:none; }
+
+.admin-settings-grid { display:flex; flex-direction:column; gap:10px; max-width:860px; margin:0 auto; }
+@media (min-width:701px) { .admin-tohirgoo-bar { padding:16px 22px; } }
+
+.admin-setting-card { display:flex; align-items:center; gap:14px; background:#fff; border:2px solid #ead9c8; border-radius:14px; padding:14px 16px; text-align:left; width:100%; box-shadow:0 2px 8px rgba(194,65,12,.08); }
+
+.admin-setting-card::after { display:none; }
+
+.asc-text { flex:1; display:flex; flex-direction:column; }
+
+.asc-text strong { font-size:14px; color:#4a2c1a; }
+
+.asc-text small { font-size:12px; color:#8a6d5b; }
+
+.asc-arrow { font-size:18px; color:#c2410c; }
+
+.admin-section h4 { margin:14px 0 8px; color:#7a3b2e; font-size:15px; }
+
+.admin-sec-back { margin-bottom:10px; }
+
+body.бараан .admin-setting-card { background:#33261d; border-color:#4a352c; }
+
+body.бараан .asc-text strong { color:#f0e2d3; }
+
+body.бараан .asc-text small { color:#c9a98a; }
+
+body.бараан .admin-tohirgoo-bar { background:#0f172a; }
+
+.admin-user { cursor:pointer; }
+
+.admin-user-detail { margin:6px 0 12px 0; background:#fbf8f4; border:1px solid #ead9c8; border-radius:12px; padding:12px 14px; font-size:13px; }
+
+body.бараан .admin-user-detail { background:#241a14; border-color:#4a352c; }
+
+
+/* ---------- Хэрэглэгчид: хайлт + устгах ---------- */
+.admin-user-hailt { width:100%; max-width:420px; padding:10px 14px; border:2px solid #d8c4b0; border-radius:12px; background:#fff; font-family:inherit; font-size:14px; color:#5a4634; margin-bottom:10px; display:block; }
+.admin-user-hailt:focus { outline:none; border-color:#b5502a; }
+.admin-user { padding-right:4px; }
+.admin-user .au-idalgaa { flex:1; min-width:0; text-align:left; }
+.admin-user .admin-user-del { border:1px solid #e6b3a3; background:#fff5f0; color:#a0442a; font-family:inherit; font-size:12px; font-weight:700; padding:7px 12px; border-radius:10px; cursor:pointer; flex-shrink:0; align-self:flex-start; }
+.admin-user .admin-user-del:hover { background:#a0442a; color:#fff; border-color:#a0442a; }
+body.бараан .admin-user-hailt { background:#241a14; border-color:#4a352c; color:#f4e5d5; }

@@ -1,0 +1,189 @@
+<!-- =========================================
+     Номын Ертөнц — Админ тохиргооны хэсгийн маркап (admin.html)
+     Энэ файл нь фрагмент хэлбэртэй: admin.js түүнийг index.html доторх
+     #adminTohirgooRoot саванд ачаална (сервэрээс нээх шаардлагатай).
+     Загвар нь admin.css дотор тусдаа байрладаг — энд style бичдэггүй.
+     ========================================= -->
+    <!-- АДМИН ТОХИРГОО ХУУДАС -->
+    <section class="page" id="page-adminTohirgoo">
+      <div class="admin-tohirgoo-bar">
+        <button type="button" id="adminTohirgooBack" class="admin-back-btn" aria-label="Буцах">←</button>
+        <h2>Админ тохиргоо</h2>
+      </div>
+      <div class="heseg">
+        <div class="admin-settings-grid" id="adminSettingsGrid">
+          <button type="button" class="admin-setting-card" data-admin-nav="hereglegch">
+            <span class="asc-text"><strong>Хэрэглэгчид удирдах</strong><small>Хэрэглэгчдийн бүртгэл, эрх, статус</small></span>
+            <span class="asc-arrow">›</span>
+          </button>
+          <button type="button" class="admin-setting-card" data-admin-nav="nom">
+            <span class="asc-text"><strong>Номын удирдлага</strong><small>Ном нэмэх, засах, устгах</small></span>
+            <span class="asc-arrow">›</span>
+          </button>
+          <button type="button" class="admin-setting-card" data-admin-nav="zahialga">
+            <span class="asc-text"><strong>Захиалга удирдах</strong><small>Захиалга, төлбөр, хүргэлт</small></span>
+            <span class="asc-arrow">›</span>
+          </button>
+          <button type="button" class="admin-setting-card" data-admin-nav="angilal">
+            <span class="asc-text"><strong>Ангилал удирдах</strong><small>Ангилал нэмэх, засах, устгах</small></span>
+            <span class="asc-arrow">›</span>
+          </button>
+          <button type="button" class="admin-setting-card" data-admin-nav="zohiolch">
+            <span class="asc-text"><strong>Зохиолч удирдах</strong><small>Зохиолч нэмэх, засах, устгах</small></span>
+            <span class="asc-arrow">›</span>
+          </button>
+          <button type="button" class="admin-setting-card" data-admin-nav="site">
+            <span class="asc-text"><strong>Сайтын тохиргоо</strong><small>Ерөнхий тохиргоо, мэдээлэл</small></span>
+            <span class="asc-arrow">›</span>
+          </button>
+        </div>
+        <div id="adminSections">
+          <div class="admin-section" data-section="hereglegch" style="display:none;">
+            <button type="button" class="saaral admin-sec-back" data-sec-back>← Буцах</button>
+            <h4>Хэрэглэгчид (<span id="adminUserToo">0</span>)</h4>
+            <input type="search" id="adminUserHailt" class="admin-user-hailt" placeholder="🔍 Нэр эсвэл имэйлээр хайх..." autocomplete="off">
+            <div id="adminUserList"></div>
+          </div>
+          <div class="admin-section" data-section="nom" style="display:none;">
+            <button type="button" class="saaral admin-sec-back" data-sec-back>← Буцах</button>
+            <h4>Ном нэмэх (админ)</h4>
+            <form id="adminNomForm" class="admin-form">
+              <label>Номын нэр<input type="text" id="anTitle" placeholder="Номын нэр..." required></label>
+              <label>Зохиолч<input type="text" id="anAuthor" placeholder="Зохиолч..." required list="anAuthorList"></label>
+              <datalist id="anAuthorList"></datalist>
+              <label>Үнэ (₮)<input type="number" id="anPrice" placeholder="25000" min="0" required></label>
+              <label>Ангилал
+                <select id="anCategory">
+                  <option value="Уран зохиол">Уран зохиол</option>
+                  <option value="Түүх">Түүх</option>
+                  <option value="Философи">Философи</option>
+                  <option value="Эрүүл мэнд">Эрүүл мэнд</option>
+                  <option value="Ерөнхий боловсрол">Ерөнхий боловсрол</option>
+                </select>
+              </label>
+              <label>Сэдэв
+                <select id="anTopic">
+                  <option value="Амьдрал">Амьдрал</option>
+                  <option value="Хайр">Хайр</option>
+                  <option value="Түүх">Түүх</option>
+                  <option value="Философи">Философи</option>
+                  <option value="Эрүүл мэнд">Эрүүл мэнд</option>
+                  <option value="Сэтгэл зүй">Сэтгэл зүй</option>
+                  <option value="Нийгэм">Нийгэм</option>
+                  <option value="Өөрийгөө хөгжүүлэх">Өөрийгөө хөгжүүлэх</option>
+                  <option value="Адал явдал">Адал явдал</option>
+                  <option value="Намтар">Намтар</option>
+                </select>
+              </label>
+              <label>Хэл<input type="text" id="anLang" placeholder="Монгол хэл" value="Монгол хэл"></label>
+              <label>Үлдэгдэл<input type="number" id="anStock" placeholder="10" min="0" value="10"></label>
+              <label>Хуудас<input type="number" id="anPages" placeholder="200" min="1" value="200"></label>
+              <label>Тайлбар<textarea id="anDesc" rows="2" placeholder="Номын тайлбар..."></textarea></label>
+              <button type="submit">Ном нэмэх</button>
+            </form>
+            <h4>Ном засах / онцлох / устгах</h4>
+            <input type="text" id="adminNomHailt" placeholder="Номын нэрээр хайх..." class="zohiolch-hailt">
+            <div id="adminNomList"></div>
+            <div class="admin-featured" id="adminFeaturedBox">
+              <p><strong>Шилдэг борлуулалттай одоо:</strong> <span id="adminBestOdoo">—</span> <button type="button" id="adminBestTseverleh" class="saaral">болих</button></p>
+              <p><strong>Санал болгох одоо:</strong> <span id="adminRecOdoo">—</span> <button type="button" id="adminRecTseverleh" class="saaral">цэвэрлэх</button></p>
+            </div>
+          </div>
+          <div class="admin-section" data-section="zahialga" style="display:none;">
+            <button type="button" class="saaral admin-sec-back" data-sec-back>← Буцах</button>
+            <h4>Бүх захиалга (<span id="adminOrdToo">0</span>)</h4>
+            <div class="admin-filter">
+              <input type="text" id="adminOrderHailt" placeholder="Дугаар / нэр / утасаар хайх..." class="zohiolch-hailt admin-hailt">
+              <select id="adminOrderFilter">
+                <option value="">Бүх төлөв</option>
+                <option value="0">Захиалсан</option>
+                <option value="1">Хүргэгдэж байгаа</option>
+                <option value="2">Хүргэгдсэн</option>
+              </select>
+              <button type="button" id="adminOrderRefresh" class="saaral">Шинэчлэх</button>
+            </div>
+            <div id="adminOrderList"></div>
+            <h4>Ирсэн зурвасууд (<span id="adminMsgToo">0</span>)</h4>
+            <div class="admin-filter">
+              <button type="button" id="adminMsgRefresh" class="saaral">Шинэчлэх</button>
+              <button type="button" id="adminMsgClear" class="saaral">Бүгдийг устгах</button>
+            </div>
+            <div id="adminMsgList"></div>
+            <h4>Түрээсийн хяналт</h4>
+            <div class="rent-stats" id="rentStats"></div>
+            <div class="admin-filter">
+              <input type="text" id="rentHailt" placeholder="Дугаар / нэр / номоор хайх..." class="zohiolch-hailt admin-hailt">
+              <select id="rentFilter">
+                <option value="">Бүх төлөв</option>
+                <option value="Хүлээгдэж буй">Хүлээгдэж буй</option>
+                <option value="Баталгаажсан">Баталгаажсан</option>
+                <option value="Түрээслэгдсэн">Түрээслэгдсэн</option>
+                <option value="Дуусах дөхсөн">Дуусах дөхсөн</option>
+                <option value="Хугацаа хэтэрсэн">Хугацаа хэтэрсэн</option>
+                <option value="Буцаагдсан">Буцаагдсан</option>
+                <option value="Цуцлагдсан">Цуцлагдсан</option>
+              </select>
+              <input type="date" id="rentDate" title="Огноогоор шүүх">
+              <button type="button" id="rentRefresh" class="saaral">Шинэчлэх</button>
+            </div>
+            <div id="rentList"></div>
+            <h4>Түрээсийн тохиргоо</h4>
+            <form id="adminRentForm" class="admin-form">
+              <label class="tohirgoo-шалгах"><input type="checkbox" id="arEnabled" checked> Түрээсийн үйлчилгээ идэвхтэй</label>
+              <label>Хугацааны сонголт (хоног, таслалаар)<input type="text" id="arDurations" placeholder="7,14,30" required></label>
+              <label>Өдрийн түрээсийн үнэ (₮)<input type="number" id="arDaily" min="0" required></label>
+              <label>Барьцаа (₮, буцаагдана)<input type="number" id="arDeposit" min="0" required></label>
+              <label>Хугацаа хэтэрсний торгууль (₮/хоног)<input type="number" id="arFine" min="0" required></label>
+              <label>Сунгах зөвшөөрөх
+                <select id="arExtend"><option value="тийм">Тийм</option><option value="үгүй">Үгүй</option></select>
+              </label>
+              <label>Нэг сунгалт (хоног)<input type="number" id="arExtendDays" min="1" required></label>
+              <label>Хамгийн их сунгалт (нийт хоног)<input type="number" id="arMaxDays" min="1" required></label>
+              <label>Сануулгын өдрүүд (таслалаар)<input type="text" id="arRemind" placeholder="3,1,0"></label>
+              <button type="submit">Түрээсийн тохиргоо хадгалах</button>
+            </form>
+          </div>
+          <div class="admin-section" data-section="angilal" style="display:none;">
+            <button type="button" class="saaral admin-sec-back" data-sec-back>← Буцах</button>
+            <h4>Ангилал удирдах</h4>
+            <form id="adminAngilalForm" class="admin-form">
+              <label>Шинэ ангилал<input type="text" id="anAngilalNer" maxlength="30" placeholder="ж: Комик" required></label>
+              <button type="submit">Ангилал нэмэх</button>
+            </form>
+            <div id="adminAngilalList"></div>
+          </div>
+          <div class="admin-section" data-section="zohiolch" style="display:none;">
+            <button type="button" class="saaral admin-sec-back" data-sec-back>← Буцах</button>
+            <h4>Зохиолч удирдах</h4>
+            <p class="tohirgoo-tailbar">Шинэ зохиолч ном нэмэх үед автоматаар бүртгэгдэнэ. Энд нэрийг засах, номгүй зохиолчийг устгах боломжтой.</p>
+            <form id="adminZohiolchForm" class="admin-form">
+              <label>Шинэ зохиолч<input type="text" id="anZohiolchNer" maxlength="60" placeholder="ж: Шинэ зохиолч" required></label>
+              <button type="submit">Зохиолч нэмэх</button>
+            </form>
+            <div id="adminZohiolchList"></div>
+          </div>
+          <div class="admin-section" data-section="site" style="display:none;">
+            <button type="button" class="saaral admin-sec-back" data-sec-back>← Буцах</button>
+            <h4>Хүргэлтийн тохиргоо</h4>
+            <div id="adminDeliveryList"></div>
+            <form id="adminCityForm" class="admin-form">
+              <label>Шинэ хот / аймаг<input type="text" id="acName" placeholder="ж: Ховд" required></label>
+              <label>Хүргэлтийн үнэ (₮)<input type="number" id="acFee" placeholder="15000" min="0" required></label>
+              <button type="submit">Хот нэмэх</button>
+            </form>
+            <form id="adminShipForm" class="admin-form">
+              <label>Үнэгүй хүргэлт эхлэх дүн (₮)<input type="number" id="asThreshold" min="0" step="1000" required></label>
+              <label>Үнэгүй хүргэлт үйлчлэх хотууд<div id="asFreeCities" class="admin-check"></div></label>
+              <button type="submit">Хүргэлтийн тохиргоо хадгалах</button>
+            </form>
+            <h4>Сайтын тохиргоо</h4>
+            <form id="adminSiteForm" class="admin-form">
+              <label>Нүүр хуудасны хүргэлтийн тайлбар загвар (use {hot}, {bosgo})<input type="text" id="asSiteText" placeholder="{hot} хотод {bosgo}₮-өөс дээш худалдан авалтад үнэгүй хүргэлт."></label>
+              <label>Үйлчилгээний нөхцөлийн хувилбар<input type="text" id="asTerms" placeholder="1.0" required></label>
+              <button type="submit">Сайтын тохиргоо хадгалах</button>
+            </form>
+            <p class="tohirgoo-tailbar">Тэмдэглэл: бодит олон хэрэглэгчтэй системд эдгээр тохиргоо backend/database дээр төвлөрч, админы эрх сервер талд шалгагдах ёстой.</p>
+          </div>
+        </div>
+      </div>
+    </section>

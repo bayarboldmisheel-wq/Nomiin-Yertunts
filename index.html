@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Номын Ертөнц - Монгол Онлайн Номын Дэлгүүр</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="admin.css?v=1">
+
+</head>
+<body>
+
+  <!-- Дээд туслах мөр + толгой + хүрээтэй нав - AzKhur зураг шиг нэг бүтэц -->
+  <div class="topbar">
+    <div class="topbar-dotor">
+      <a href="#" data-huudas="salbar">Дэлгүүрийн хаяг</a>
+      <a href="#" data-huudas="beleg">Бэлгийн карт</a>
+      <a href="#" data-medee="Хүргэлтийн мэдээлэл">Хүргэлт</a>
+      <a href="#" data-medee="Үйлчилгээний нөхцөл">Үйлчилгээ</a>
+      <a href="#" data-huudas="nom">Каталоги</a>
+    </div>
+  </div>
+
+  <!-- Дээд толгой хэсэг: лого дээрээ, доор нь хүрээтэй товчнууд -->
+  <header class="tolgoi">
+    <div class="tolgoi-dotor tolgoi-deed">
+      <div class="logo" data-huudas="nuur" title="Нүүр хуудас">
+        <svg class="logo-zurag" width="44" height="44" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#7a3b2e"/><path d="M12 10 h12 a4 4 0 0 1 4 4 v20 h-12 a4 4 0 0 1 -4 -4 Z" fill="#fbe9d9"/><path d="M28 10 h4 v24 h-4 Z" fill="#e09a6c"/><path d="M15 16 h8 M15 20 h8 M15 24 h6" stroke="#7a3b2e" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="logo-ner">Номын Ертөнц</span>
+      </div>
+      <div class="header-hailt">
+        <div class="hailt-wrap">
+          <input type="text" id="headerHailt" placeholder="Ном, зохиолч хайх..." autocomplete="off">
+          <div class="hailt-menu" id="headerHailtMenu" style="display:none;"></div>
+        </div>
+        <button type="button" id="headerHailtTovch" aria-label="Хайх"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg> Хайх</button>
+      </div>
+      <div class="tolgoi-tovch">
+        <button type="button" class="tovch-guilgeh" id="tohirgooTovch" title="Тохиргоо" aria-label="Тохиргоо">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </button>
+        <button type="button" class="tovch-guilgeh" id="sagsTovch">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          Сагс <span class="too" id="sagsToo">0</span>
+        </button>
+        <button type="button" class="tovch-nevtreh" id="nevtrehTovch" title="Профайл руу буцах">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span id="nevtrehNer">Нэвтрэх</span>
+        </button>
+        <button type="button" class="tses-tovch" id="tsesTovch" aria-label="Цэс"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      </div>
+    </div>
+    <div class="tolgoi-huree">
+      <nav class="tses" id="tses">
+        <a href="#" data-huudas="nuur">Нүүр</a>
+        <a href="#" data-huudas="nom">Ном</a>
+        <a href="#" data-huudas="angilal">Ангилал</a>
+        <a href="#" data-huudas="zohiolch">Зохиолчид</a>
+        <a href="#" data-huudas="sedev">Сэдэв</a>
+        <a href="#" data-huudas="sanal">Санал болгох</a>
+        <a href="#" data-huudas="shildeg">Шилдэг</a>
+        <a href="#" data-huudas="salbar">Салбар</a>
+        <a href="#" data-huudas="beleg">Бэлгийн карт</a>
+        <a href="#" data-huudas="holboo">Холбоо барих</a>
+        <a href="#" data-huudas="sags" class="mobile-only">🛒 <span class="nav-txt">Сагс</span> (<span id="sagsTooMobile">0</span>)</a>
+        <a href="#" data-huudas="nevtreh" class="mobile-only">👤 <span class="nav-txt">Профайл</span></a>
+        <a href="#" data-huudas="tohirgoo" class="mobile-only">⚙️ <span class="nav-txt">Тохиргоо</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- НҮҮР ХУУДАС -->
+    <section class="page идэвхтэй" id="page-nuur">
+      <div class="ugтах">
+        <div class="ugтах-dotor">
+          <div class="ugтах-tekst">
+            <h1 class="hero-title"><span class="hero-line1">Номын ертөнцөд</span><span class="hero-line2">тавтай морил!</span></h1>
+            <p class="hero-sub">Таны мөрөөдлийн номыг нэг дороос олоорой. Уран зохиол, түүх, философи, эрүүл мэнд + <strong>Ерөнхий боловсролын</strong> <span id="heroCatToo">130</span> гаруй ном.</p>
+            <div class="ugтах-uzuu">
+              <span id="heroFreeShipPill">80000₮-өөс дээш хүргэлт үнэгүй</span>
+              <span>100 гаруй ном</span>
+              <span>Уншигчдын итгэл</span>
+            </div>
+            <div class="ugтах-tovchnuud">
+              <button type="button" data-huudas="nom">Ном үзэх</button>
+              <button type="button" data-huudas="shildeg" class="saaral">Шилдэг ном</button>
+            </div>
+            <div class="ишлэл-хүрээ">
+              <small>Өнөөдрийн эшлэл</small>
+              <p id="ишлэлТекст">Ном бол оюуны мөнхийн гэрэл.</p>
+            </div>
+          </div>
+          <div class="ugтах-zurag">
+            <div class="banner" id="banner">
+              <div class="banner-kart идэвхтэй" data-banner="0">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='420'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237a3b2e'/%3E%3Cstop offset='1' stop-color='%23e09a6c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='420' fill='url(%23b)'/%3E%3C/svg%3E" alt="Шинэ номын зураг">
+                <div class="banner-tekst"><h3>Шинэ ном ирлээ</h3><p>Энэ сарын шилдэг 20 ном</p></div>
+              </div>
+              <div class="banner-kart" data-banner="1">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='420'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232b5d4f'/%3E%3Cstop offset='1' stop-color='%237fc8a9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='420' fill='url(%23b)'/%3E%3C/svg%3E" alt="Шилдэг номын зураг">
+                <div class="banner-tekst"><h3>Шилдэг борлуулалттай</h3><p>Уншигчдын хамгийн их авсан ном</p></div>
+              </div>
+              <div class="banner-kart" data-banner="2">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='420'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233a4a7a'/%3E%3Cstop offset='1' stop-color='%238aa4e8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='420' fill='url(%23b)'/%3E%3C/svg%3E" alt="Урамшууллын зураг">
+                <div class="banner-tekst"><h3>Урамшуулал</h3><p>80000₮-өөс дээш хүргэлт үнэгүй</p></div>
+              </div>
+            </div>
+            <div class="banner-tseg" id="bannerTseg">
+              <button type="button" class="tseg идэвхтэй" data-tseg="0" aria-label="Зураг 1"></button>
+              <button type="button" class="tseg" data-tseg="1" aria-label="Зураг 2"></button>
+              <button type="button" class="tseg" data-tseg="2" aria-label="Зураг 3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="heseg">
+        <div class="azkhur-row">
+          <div class="spotlight" id="authorSpotlight">
+            <div>
+              <small id="spotWeek" style="opacity:.8;"></small>
+              <h3 id="spotName">Зохиолч</h3>
+              <p class="spot-sub" id="spotSub"></p>
+              <blockquote id="spotQuote"></blockquote>
+              <div class="spot-nav">
+                <button type="button" data-huudas="zohiolch" class="saaral" id="spotBtn">Түүний бүтээлүүд</button>
+                <div class="spot-arrows"><button type="button" class="saaral" id="spotPrev" aria-label="Өмнөх">‹</button><button type="button" class="saaral" id="spotNext" aria-label="Дараах">›</button></div>
+              </div>
+              <div class="spot-dots" id="spotDots"></div>
+            </div>
+            <div class="spot-visual"><img id="spotImg" alt="Онцлох зохиолч"><img id="spotBook" alt="Онцлох ном"></div>
+          </div>
+          <div class="bestseller-card">
+            <div class="bs-label" id="bsWeek">Энэ 7 хоногийн</div>
+            <div class="bs-title">Шилдэг борлуулалттай</div>
+            <img id="bsImg" alt="Best seller ном">
+            <h4 id="bsTitle" style="margin-top:10px;"></h4>
+            <div class="bs-row">
+              <span class="bs-price" id="bsPrice"></span>
+              <button type="button" id="bsBuy">Авах</button>
+            </div>
+            <small id="bsTimer" style="display:block;margin-top:8px;color:#6b7280;"></small>
+            <div class="bs-dots" id="bsDots" style="margin-top:8px;display:flex;gap:6px;justify-content:center;"></div>
+          </div>
+        </div>
+        <div class="promo-strip promo-dynamic" id="promoStrip"><span id="promoText">ЕРӨНХИЙ БОЛОВСРОЛЫН НОМ</span><small id="promoSub"></small></div>
+      </div>
+
+      <div class="heseg heseg-pastel">
+        <h2>Шинэ ном</h2>
+        <p class="heseg-tailbar">Хамгийн сүүлд нэмэгдсэн номнууд</p>
+        <div class="kart-tor heoroh" id="shineNom"></div>
+        <div class="tov-gol"><button type="button" data-huudas="nom">Бүх ном үзэх</button></div>
+      </div>
+
+      <div class="heseg saaral-bg">
+        <h2>Онцлох ном</h2>
+        <p class="heseg-tailbar">Манай дэлгүүрийн онцолсон сонголт</p>
+        <div class="kart-tor" id="ontslohNom"></div>
+      </div>
+
+      <div class="heseg heseg-pastel" id="adminFavHeseg">
+        <h2>Админы дуртай ном</h2>
+        <p class="heseg-tailbar">Дэлгүүрийн админ дуртай гэж тэмдэглэсэн номнууд</p>
+        <div class="kart-tor" id="adminFavNom"></div>
+      </div>
+
+      <div class="heseg heseg-pastel">
+        <h2>Уншигчдын санал болгосон ном</h2>
+        <p class="heseg-tailbar">Өндөр үнэлгээтэй номнууд</p>
+        <div class="kart-tor" id="unshigchNom"></div>
+        <div class="tov-gol"><button type="button" data-huudas="sanal">Санал болгох хуудас</button></div>
+      </div>
+
+    </section>
+
+    <!-- НОМ ХУУДАС -->
+    <section class="page" id="page-nom">
+      <div class="huudas-garchig">
+        <h2>Ном хайх ба шүүх</h2>
+        <p class="heseg-tailbar">Нэр, зохиолч, ангилал, сэдвээр хайж, шүүлтүүрээр нарийвчлаарай</p>
+      </div>
+      <div class="hailt-samбар">
+        <div class="hailt-mөр">
+          <div class="hailt-wrap">
+            <input type="text" id="hailt" placeholder="Номын нэр, зохиолч, ангилал, сэдвээр хайна уу..." autocomplete="off">
+            <div class="hailt-menu" id="hailtMenu" style="display:none;"></div>
+          </div>
+          <button type="button" id="hailtTovch">Хайх</button>
+          <button type="button" id="tseverlehTovch" class="saaral">Цэвэрлэх</button>
+        </div>
+        <div class="санал-хайлт" id="сүүлийнХайлтМөр" style="display:none;">
+          <small>Сүүлийн хайлтууд:</small>
+          <div class="санал-чип" id="сүүлийнХайлтЧип"></div>
+          <button type="button" id="хайлтТүүхЦэвэрлэх" class="saaral">Арилгах</button>
+        </div>
+        <div class="shuultuur">
+          <h3>Шүүх</h3>
+          <div class="shuultuur-tor">
+            <label>Ангилал
+              <select id="shuultAngilal">
+                <option value="">Бүгд</option>
+                <option value="Уран зохиол">Уран зохиол</option>
+                <option value="Түүх">Түүх</option>
+                <option value="Философи">Философи</option>
+                <option value="Эрүүл мэнд">Эрүүл мэнд</option>
+                <option value="Ерөнхий боловсрол">Ерөнхий боловсрол</option>
+              </select>
+            </label>
+            <label>Зохиолч
+              <select id="shuultZohiolch"><option value="">Бүгд</option></select>
+            </label>
+            <label>Сэдэв
+              <select id="shuultSedev">
+                <option value="">Бүгд</option>
+                <option value="Хайр">Хайр</option>
+                <option value="Амьдрал">Амьдрал</option>
+                <option value="Өөрийгөө хөгжүүлэх">Өөрийгөө хөгжүүлэх</option>
+                <option value="Түүх">Түүх</option>
+                <option value="Философи">Философи</option>
+                <option value="Эрүүл мэнд">Эрүүл мэнд</option>
+                <option value="Сэтгэл зүй">Сэтгэл зүй</option>
+                <option value="Нийгэм">Нийгэм</option>
+                <option value="Адал явдал">Адал явдал</option>
+                <option value="Намтар">Намтар</option>
+              </select>
+            </label>
+            <label>Хамгийн бага үнэ (₮)
+              <input type="number" id="uneMin" placeholder="0" min="0">
+            </label>
+            <label>Хамгийн их үнэ (₮)
+              <input type="number" id="uneMax" placeholder="80000" min="0">
+            </label>
+            <label>Үнэлгээ
+              <select id="shuultUnelgee">
+                <option value="0">Бүгд</option>
+                <option value="4.5">4.5-аас дээш</option>
+                <option value="4">4-өөс дээш</option>
+                <option value="3.5">3.5-аас дээш</option>
+              </select>
+            </label>
+            <label>Хэвлэгдсэн он
+              <select id="shuultOn">
+                <option value="">Бүгд</option>
+                <option value="2024-2026">2024 - 2026</option>
+                <option value="2020-2023">2020 - 2023</option>
+                <option value="2010-2019">2010 - 2019</option>
+                <option value="2000-2009">2000 - 2009</option>
+              </select>
+            </label>
+            <label>Эрэмбэлэх
+              <select id="erembeleh">
+                <option value="">Дарааллаар (№)</option>
+                <option value="ner-osoh">Нэрээр өсөх</option>
+                <option value="ner-buurah">Нэрээр буурах</option>
+                <option value="une-baga">Үнэ багаас их</option>
+                <option value="une-ih">Үнэ ихээс бага</option>
+                <option value="unelgee">Үнэлгээ өндөрөөс бага</option>
+                <option value="shine">Шинээр нэмэгдсэн</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <p class="niit-too" id="niitToo"></p>
+      </div>
+      <div class="heseg">
+        <div class="kart-tor" id="buhNom"></div>
+        <div class="pager" id="номХуудаслалт"></div>
+      </div>
+    </section>
+
+    <!-- АНГИЛАЛ ХУУДАС -->
+    <section class="page" id="page-angilal">
+      <div class="huudas-garchig"><h2>Ангилал</h2><p class="heseg-tailbar">Ангилал дээр дарж холбогдох номыг үзнэ үү</p></div>
+      <div class="heseg"><div class="angilal-tor" id="angilalTor"></div></div>
+      <div class="heseg"><h2 id="angilalGarchig">Сонгосон ангиллын ном</h2><div class="kart-tor" id="angilalNom"></div></div>
+    </section>
+
+    <!-- ЗОХИОЛЧИД ХУУДАС -->
+    <section class="page" id="page-zohiolch">
+      <div class="huudas-garchig"><h2>Зохиолчид</h2><p class="heseg-tailbar">Зохиолч дээр дарж танилцуулга болон номыг үзнэ үү</p></div>
+      <div class="heseg">
+        <input type="text" id="zohiolchHailt" placeholder="Зохиолчийн нэрээр хайх..." class="zohiolch-hailt">
+        <div class="zohiolch-tor" id="zohiolchTor"></div>
+      </div>
+    </section>
+
+    <!-- СЭДЭВ ХУУДАС -->
+    <section class="page" id="page-sedev">
+      <div class="huudas-garchig"><h2>Сэдэв</h2><p class="heseg-tailbar">Сэдэв дээр дарж холбогдох номыг үзнэ үү</p></div>
+      <div class="heseg"><div class="sedev-tor" id="sedevTor"></div></div>
+      <div class="heseg"><h2 id="sedevGarchig">Сонгосон сэдвийн ном</h2><div class="kart-tor" id="sedevNom"></div></div>
+    </section>
+
+    <!-- САНАЛ ХУУДАС -->
+    <section class="page" id="page-sanal">
+      <div class="huudas-garchig"><h2>Танд санал болгох ном</h2><p class="heseg-tailbar" id="sanalTailbar">Хайлт хийсний дараа танд тохирсон ном санал болгоно.</p></div>
+      <div class="heseg"><div class="kart-tor" id="sanalNom"></div></div>
+    </section>
+
+    <!-- ШИЛДЭГ ХУУДАС -->
+    <section class="page" id="page-shildeg">
+      <div class="huudas-garchig"><h2>Шилдэг борлуулалттай</h2><p class="heseg-tailbar">Уншигчдын хамгийн их худалдаж авсан ном</p></div>
+      <div class="heseg"><div class="kart-tor" id="shildegNom"></div></div>
+    </section>
+
+    <!-- САГС ХУУДАС -->
+    <section class="page" id="page-sags">
+      <div class="huudas-garchig"><h2>Таны сагс</h2><p class="heseg-tailbar">Сагсан дахь номын тоо ширхэгийг өөрчилж, захиалгаа үргэлжлүүлнэ үү</p></div>
+      <div class="heseg">
+        <div class="sags-huudas">
+          <div id="sagsJagsaalt"></div>
+          <div class="sags-niit">
+            <p>Нийт үнэ: <strong id="sagsNiit">0₮</strong></p>
+            <div class="sags-tovchnuud">
+              <button type="button" id="sagsTseverleh" class="saaral">Сагс хоослох</button>
+              <button type="button" id="sagsHudahdah">Худалдаж авах</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- НЭВТРЭХ ХУУДАС -->
+    <section class="page" id="page-nevtreh">
+      <div class="huudas-garchig" id="nevtrehGarchig"><h2>Нэвтрэх / Бүртгүүлэх</h2><p class="heseg-tailbar">Хаягаа үүсгэж захиалгаа хялбар удирдаарай</p></div>
+      <div class="heseg">
+        <div class="nevtreh-huudas">
+          <div class="tab-tovchnuud" id="authTabs">
+            <button type="button" class="tab идэвхтэй" id="nevtrehTab">Нэвтрэх</button>
+            <button type="button" class="tab" id="burtguulehTab">Бүртгүүлэх</button>
+          </div>
+          <form id="nevtrehForm" autocomplete="on">
+            <label>И-мэйл<input type="text" id="nevtrehEmail" placeholder="И-мэйл хаягаа оруулна уу..." autocomplete="email" required></label>
+            <label>Нууц үг<input type="password" id="nevtrehPass" placeholder="Нууц үгээ оруулна уу..." autocomplete="current-password" required></label>
+            <button type="submit">Нэвтрэх</button>
+          </form>
+          <form id="burtguulehForm" style="display:none;" autocomplete="on">
+            <label>Нэр<input type="text" id="burtgehNer" placeholder="Нэрээ оруулна уу..." autocomplete="name" required></label>
+            <label>И-мэйл<input type="text" id="burtgehEmail" placeholder="И-мэйл хаягаа оруулна уу..." autocomplete="email" required></label>
+            <label>Нууц үг<input type="password" id="burtgehPass" placeholder="Нууц үгээ оруулна уу..." autocomplete="new-password" required></label>
+            <label>Нууц үг давтах<input type="password" id="burtgehPass2" placeholder="Нууц үгээ дахин оруулна уу..." required></label>
+            <button type="submit">Бүртгүүлэх</button>
+          </form>
+          <div id="nevtersenHeseg" style="display:none;">
+            <div class="profile-head">
+              <div class="profile-avatar" id="profileAvatar">Х</div>
+              <div class="profile-who"><h3 id="nevtersenMend"></h3><small id="profileEmail"></small> <span class="role-badge" id="profileRole" style="display:none;">АДМИН</span></div>
+              <button type="button" id="garahTovch" class="saaral profile-garah">Гарах</button>
+            </div>
+            <div class="tab-tovchnuud profile-tabs" id="profileTabs">
+              <button type="button" class="tab идэвхтэй" id="tabZahialga">Миний захиалга</button>
+              <button type="button" class="tab" id="tabTurees">Түрээсүүд</button>
+              <button type="button" class="tab" id="tabSonirhol">Сонирхсон ❤</button>
+              <button type="button" class="tab" id="tabKart">Миний картууд</button>
+              <button type="button" class="tab" id="tabProfail">Миний профайл</button>
+              <button type="button" class="tab" id="tabAdmin" style="display:none;">Админ ⚙</button>
+            </div>
+            <div id="profileZahialga"><div id="мэдэгдэлЖагсаалт"></div><div id="zahialgaList"></div></div>
+            <div id="profileTurees" style="display:none;"><div id="tureesMedegdelList"></div><div id="tureesList"></div></div>
+            <div id="profileSonirhol" style="display:none;"><div class="kart-tor" id="sonirholList"></div></div>
+            <div id="profileKart" style="display:none;">
+              <h4 class="profail-garchig">Миний картууд</h4>
+              <p class="tohirgoo-tailbar">Бүрэн картын дугаар, CVV код хэзээ ч хадгалагддаггүй. Зөвхөн сүүлийн 4 орон харагдана.</p>
+              <div id="kartJagsaalt"></div>
+              <form id="kartNemehForm" class="admin-form" style="margin-top:12px;">
+                <h4>Шинэ карт нэмэх</h4>
+                <label>Карт эзэмшигчийн нэр<input type="text" id="kartNer2" maxlength="60" placeholder="ж: БАТБАЯР Б"></label>
+                <label>Картын дугаар
+                  <span class="kart-duгаар-wrap"><input type="text" id="kartDugaar2" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric" maxlength="23"><span class="kart-brand" id="kartBrand2"></span></span>
+                </label>
+                <div class="kart-mor">
+                  <label>Дуусах хугацаа (MM/YY)<input type="text" id="kartHugatsaa2" placeholder="MM/YY" inputmode="numeric" maxlength="5"></label>
+                  <label>CVV/CVC<input type="password" id="kartCvv2" placeholder="•••" inputmode="numeric" maxlength="4"></label>
+                </div>
+                <p class="tolbor-алдаа" id="kartАлдаа2" style="display:none;"></p>
+                <button type="submit">Карт хадгалах</button>
+              </form>
+            </div>
+            <div id="profileProfail" style="display:none;">
+              <div id="profailHarah"></div>
+              <form id="profailForm" class="admin-form profail-edit-form" style="display:none;">
+                <label>Харуулах нэр<input type="text" id="pfNer" maxlength="40" placeholder="Нэрээ оруулна уу..."></label>
+                <label>Утасны дугаар<input type="text" id="pfUtas" maxlength="20" placeholder="ж: 99112233"></label>
+                <label>Товч намтар<textarea id="pfBio" rows="3" maxlength="500" placeholder="Өөрийн тухай товч..."></textarea></label>
+                <label>Сонирхол<input type="text" id="pfSonirhol" maxlength="120" placeholder="ж: түүхэн роман, яруу найраг"></label>
+                <label>Профайл зураг (хамгийн ихдээ 200KB: JPG/PNG/GIF)<input type="file" id="pfZurag" accept="image/jpeg,image/png,image/gif"></label>
+                <div class="tohirgoo-tovchnuud">
+                  <button type="submit">Хадгалах ✓</button>
+                  <button type="button" id="profailBolih" class="saaral">Болих</button>
+                </div>
+              </form>
+              <div class="tohirgoo-tovchnuud" id="profailZasahMor" style="display:none;"></div>
+              <div id="adminProfailHarah" style="display:none;"></div>
+              <form id="adminProfailForm" class="admin-form profail-edit-form" style="display:none;">
+                <label>Харуулах нэр<input type="text" id="apNer" maxlength="40" placeholder="Админы нэр..."></label>
+                <label>Албан тушаал / үүрэг<input type="text" id="apAlban" maxlength="80" placeholder="ж: Ахлах админ"></label>
+                <label>Холбоо барих и-мэйл<input type="text" id="apEmail" maxlength="80" placeholder="admin@nomiin-delguur.mn"></label>
+                <label>Утасны дугаар<input type="text" id="apUtas" maxlength="20" placeholder="ж: 99112233"></label>
+                <label>Ажил эхэлсэн огноо<input type="date" id="apAжилЭхэлсэн"></label>
+                <div class="tohirgoo-tovchnuud">
+                  <button type="submit">Хадгалах ✓</button>
+                  <button type="button" id="adminProfailBolih" class="saaral">Болих</button>
+                </div>
+              </form>
+              <div class="tohirgoo-tovchnuud" id="adminProfailZasahMor" style="display:none;"></div>
+            </div>
+            <div id="adminPanel" style="display:none;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- АДМИН ТОХИРГОО ХУУДАС: маркап нь admin.html дотор байгаа;
+         admin.js түүнийг доорх саванд ачаална -->
+    <div id="adminTohirgooRoot"></div>
+
+    <!-- ТОХИРГОО ХУУДАС - professional -->
+    <section class="page" id="page-tohirgoo">
+      <div class="huudas-garchig"><h2 data-i18n="settings">Тохиргоо</h2><p class="heseg-tailbar">Professional тохиргоо: өөрчлөлт шууд хадгалагдаж, шууд үйлчилнэ • Live save</p></div>
+      <div class="heseg">
+        <div class="tohirgoo-grid">
+          <div class="tohirgoo-huudas">
+            <h3>🎨 Гадаад төрх</h3>
+            <label>Ханын өнгө
+              <select id="tohirgooTheme">
+                <option value="гэрэл">Гэрэл</option>
+                <option value="бараан">Бараан</option>
+                <option value="авто">Авто (цагаас хамаарна)</option>
+              </select>
+            </label>
+            <label>Өнгөний загвар
+              <select id="tohirgooAccent">
+                <option value="улбар">Улбар шар (үндсэн)</option>
+                <option value="улаан">Улаан</option>
+                <option value="ногоон">Ногоон</option>
+                <option value="цэнхэр">Цэнхэр</option>
+                <option value="ягаан">Ягаан</option>
+                <option value="custom">Захиалгат өнгө (доор сонгоно)</option>
+              </select>
+            </label>
+            <label>Үндсэн өнгө 1<input type="color" id="colorAcc1" value="#e8935a"></label>
+            <label>Үндсэн өнгө 2<input type="color" id="colorAcc2" value="#d96a7f"></label>
+            <label>Арын өнгө<input type="color" id="colorBg" value="#fff9f3"></label>
+            <label>Текстийн өнгө<input type="color" id="colorTx" value="#4a2c1a"></label>
+            <label>Үсгийн хэмжээ
+              <select id="tohirgooFont">
+                <option value="жижиг">Жижиг</option>
+                <option value="дунд">Дунд</option>
+                <option value="том">Том</option>
+              </select>
+            </label>
+            <label>Картын нягтрал
+              <select id="tohirgooGrid">
+                <option value="хэвийн">Хэвийн</option>
+                <option value="нягт">Нягт (олон ном)</option>
+                <option value="сийрэг">Сийрэг (том карт)</option>
+              </select>
+            </label>
+            <label class="tohirgoo-шалгах"><input type="checkbox" id="tohirgooAnim" checked> Хөдөлгөөнт эффект</label>
+            <div class="tohirgoo-tovchnuud">
+              <button type="button" id="colorResetTovch" class="saaral">Өгөгдмөл өнгө сэргээх</button>
+            </div>
+          </div>
+          <div class="tohirgoo-huudas">
+            <h3>🧾 Захиалгын тохиргоо</h3>
+            <label>Хэл / Language
+              <select id="tohirgooLang">
+                <option value="mn">Монгол</option>
+                <option value="en">English (tourist mode)</option>
+              </select>
+            </label>
+            <label>Үндсэн төлбөр
+              <select id="tolborDefault">
+                <option value="Банкны картаар төлөх">Банкны картаар төлөх</option>
+                <option value="QPay-ээр төлөх">QPay-ээр төлөх</option>
+              </select>
+            </label>
+            <label>Хуудаслалт: нэг удаа харуулах ном
+              <select id="tohirgooPageSize">
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="300">Бүгд</option>
+              </select>
+            </label>
+            <label class="tohirgoo-шалгах"><input type="checkbox" id="tohirgooBanner" checked> Баннер автоматаар солигдох</label>
+            <label>Баннер хурд (сек)
+              <input type="number" id="tohirgooBannerSpeed" min="2" max="15" value="4">
+            </label>
+            <p class="tohirgoo-tailbar">Хүргэлтийн хот, төлбөр болон үнэгүй хүргэлтийн босгыг админ удирддаг.</p>
+          </div>
+          <div class="tohirgoo-huudas">
+            <h3>📚 Түрээсийн тохиргоо</h3>
+            <div id="userRentalSummary" class="tohirgoo-tailbar">Ачааллаж байна...</div>
+            <div class="tohirgoo-tovchnuud">
+              <button type="button" data-medee="Үйлчилгээний нөхцөл" class="saaral">Түрээсийн журам унших</button>
+            </div>
+            <p class="tohirgoo-tailbar">Түрээсийн хугацаа, үнэ, барьцаа болон сануулгыг админ тохируулдаг.</p>
+          </div>
+          <div class="tohirgoo-huudas">
+            <h3>🔔 Мэдэгдлийн тохиргоо</h3>
+            <label class="tohirgoo-шалгах"><input type="checkbox" id="tohirgooMedegdel" checked> Мэдэгдэл харуулах</label>
+            <label class="tohirgoo-шалгах"><input type="checkbox" id="tohirgooOrderNotify" checked> Захиалгын төлөв өөрчлөгдөхөд мэдэгдэх</label>
+            <label class="tohirgoo-шалгах"><input type="checkbox" id="tohirgooRentRemind" checked> Түрээсийн сануулга харуулах</label>
+            <label class="tohirgoo-шалгах"><input type="checkbox" id="tohirgooIshlel" checked> Өнөөдрийн эшлэл солигдох</label>
+            <p class="tohirgoo-tailbar">Сануулга апп дотор харагдана. И-мэйлээр илгээх интеграц хийгдээгүй болно.</p>
+          </div>
+          <div class="tohirgoo-huudas">
+            <h3>💾 Данс ба өгөгдөл</h3>
+            <p class="tohirgoo-tailbar" id="tohirgooStats">Сагс: 0 • Захиалга: 0 • Бэлгийн карт: 0₮</p>
+            <div class="storage-bar"><i id="storageBar" style="width:0%"></i></div>
+            <small class="tohirgoo-tailbar" id="storageText"></small>
+            <p class="tohirgoo-tailbar" id="tohirgooUser">Нэвтрээгүй</p>
+            <div class="tohirgoo-tovchnuud">
+              <button type="button" id="tohirgooHadgalah">Хадгалах ✓</button>
+              <button type="button" id="tohirgooTseverleh" class="saaral">Анхны байдал</button>
+            </div>
+            <div class="tohirgoo-tovchnuud">
+              <button type="button" id="exportTovch" class="saaral">Захиалга татах (JSON)</button>
+              <button type="button" id="backupTovch" class="saaral">Бүх өгөгдөл татах</button>
+            </div>
+            <div class="tohirgoo-tovchnuud">
+              <label class="restore-label">Сэргээх (JSON)<input type="file" id="restoreFile" accept=".json" hidden></label>
+              <button type="button" id="clearDataTovch" class="saaral">Сагс + түүх цэвэрлэх</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЭЛГИЙН КАРТ ХУУДАС - код уншуулж хөнгөлөлт -->
+    <section class="page" id="page-beleg">
+      <div class="huudas-garchig"><h2>Бэлгийн карт</h2><p class="heseg-tailbar">Кодоо оруулж эсвэл сканнердаж хөнгөлөлт аваарай. Төлбөр дээр автоматаар хасагдана.</p></div>
+      <div class="heseg">
+        <div class="beleg-grid">
+          <div class="beleg-kart-udam">
+            <div class="beleg-card-demo"><small>GIFT CARD</small><h3 id="belegDemoDun">0₮</h3><p>NOMIN-DELGUUR • info@nomiin-delguur.mn</p></div>
+            <div class="beleg-scan">
+              <label>Бэлгийн код<input type="text" id="belegCode" placeholder="ж: NOM-10, BELEG-5000"></label>
+              <div class="tohirgoo-tovchnuud">
+                <button type="button" id="belegScanTovch" class="saaral">📷 Сканнердах</button>
+                <button type="button" id="belegAddTovch">Идэвхжүүлэх</button>
+              </div>
+              <p class="tohirgoo-tailbar">Туршилтын кодууд: NOM-10 (10%), BELEG-5000 (5000₮), BELEG-10000 (10000₮), STUDENT-15 (15%)</p>
+              <p><strong>Үлдэгдэл:</strong> <span id="belegUldegdel">0₮</span></p>
+              <div id="belegTuuh"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТУСЛАХ МЭДЭЭЛЛИЙН ХУУДАС -->
+    <section class="page" id="page-tuslah">
+      <div class="heseg">
+        <div class="tuslah-huudas">
+          <h2 id="tuslahGarchig">Мэдээлэл</h2>
+          <div id="tuslahTekst" class="tuslah-tekst"></div>
+          <div class="tov-gol"><button type="button" data-huudas="nuur">Нүүр хуудас руу буцах</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- САЛБАР ХУУДАС - AzKhur-style 4 салбар -->
+    <section class="page" id="page-salbar">
+      <div class="huudas-garchig"><h2>Салбарууд</h2><p class="heseg-tailbar" id="salbarToo">4 салбар</p></div>
+      <div class="heseg">
+        <div class="salbar-tor" id="salbarTor"></div>
+        <div class="salbar-map">
+          <iframe title="Салбарын газрын зураг" loading="lazy" src="https://maps.google.com/maps?q=Ulaanbaatar%20Sukhbaatar&t=&z=12&ie=UTF8&iwloc=&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- БИДНИЙ ТУХАЙ ХУУДАС -->
+    <section class="page" id="page-tuhai">
+      <div class="huudas-garchig"><h2>Бидний тухай</h2><p class="heseg-tailbar">Манай номын дэлгүүрийн танилцуулга</p></div>
+      <div class="heseg bidnii-tuhai">
+        <p class="tom-tekst">Манай номын дэлгүүр нь уншигчдад чанартай, сонирхолтой, үнэ цэнтэй номыг нэг дороос хүргэх зорилготой. Бид уран зохиол, түүх, философи, эрүүл мэндийн чиглэлээр олон төрлийн номыг санал болгож байна.</p>
+        <div class="zorig-tor">
+          <div class="zorig-kart"><h3>Бидний зорилго</h3><p>Монголын бүх уншигчдад дэлхийн болон үндэсний шилдэг номыг хүргэх.</p></div>
+          <div class="zorig-kart"><h3>Бидний үнэт зүйл</h3><p>Чанар, үнэнч байдал, уншигчдадаа хүндэтгэлтэй хандах.</p></div>
+          <div class="zorig-kart"><h3>Манай үйлчилгээ</h3><p>Өргөн сонголт, хурдан хүргэлт, хялбар захиалга.</p></div>
+          <div class="zorig-kart"><h3>Хүргэлтийн үйлчилгээ</h3><p>Улаанбаатар хотод 24 цагт, орон нутагт 2-4 хоногт хүргэнэ.</p></div>
+          <div class="zorig-kart"><h3>Хэрэглэгчийн үйлчилгээ</h3><p>Өдөр бүр 09:00-21:00 цагт утсаар болон цахимаар туслана.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ХОЛБОО БАРИХ ХУУДАС -->
+    <section class="page" id="page-holboo">
+      <div class="huudas-garchig"><h2>Холбоо барих</h2><p class="heseg-tailbar">Бидэнтэй холбогдож асуултаа илгээнэ үү</p></div>
+      <div class="heseg">
+        <div class="holboo-tor">
+          <div class="holboo-medee">
+            <p><strong>Хаяг:</strong> Улаанбаатар хот, Сүхбаатар дүүрэг, 3-р хороо, Номын гудамж, Номын дэлгүүр</p>
+            <p><strong>Лавлах:</strong> 7000-0000, 8800-0000</p>
+            <p><strong>И-мэйл:</strong> info@nomiin-delguur.mn</p>
+            <p><strong>Ажлын цаг:</strong> Өдөр бүр 09:00-21:00</p>
+          </div>
+          <form id="holbooForm" class="holboo-form">
+            <h3>Зурвас илгээх</h3>
+            <label>Нэр<input type="text" id="holbooNer" placeholder="Нэрээ оруулна уу..." required></label>
+            <label>И-мэйл<input type="text" id="holbooEmail" placeholder="И-мэйл хаягаа оруулна уу..." required></label>
+            <label>Зурвас<textarea id="holbooZurvas" rows="5" placeholder="Зурвасаа бичнэ үү..." required></textarea></label>
+            <button type="submit">Илгээх</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Хөл хэсэг -->
+  <footer class="hol">
+    <div class="hol-dotor">
+      <div class="hol-bagana">
+        <h3>Холбоо барих</h3>
+        <p>Улаанбаатар хот, Сүхбаатар дүүрэг, 3-р хороо<br>Номын гудамж, Номын дэлгүүр</p>
+        <p>Лавлах: 7000-0000, 8800-0000</p>
+        <p>И-мэйл: info@nomiin-delguur.mn</p>
+        <div class="soyal">
+          <a href="#" data-soyal="Фэйсбүүк" title="Фэйсбүүк" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.7-1.6h1.5V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.7H7.8V14h2.7v8h3z"/></svg></a>
+          <a href="#" data-soyal="Твиттер" title="X (Твиттер)" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3l-6.6 7.6L22 21h-6.1l-4.8-6.3L5.6 21h-3l7.1-8.1L2 3h6.3l4.3 5.7L17.8 3zm-1.1 16.1h1.7L7.4 4.8H5.6l11.1 14.3z"/></svg></a>
+          <a href="#" data-soyal="Инстаграм" title="Инстаграм" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" data-soyal="Юүтүб" title="Юүтүб" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.6 3.5 12 3.5 12 3.5s-4.6 0-7.7.3c-.5.1-1.5.1-2.4 1-.7.7-.9 2.4-.9 2.4S.8 9.2.8 11.1v1.8c0 1.9.2 3.9.2 3.9s.2 1.7.9 2.4c.9.9 2 .9 2.5 1 1.8.2 7.6.3 7.6.3s4.6 0 7.7-.4c.5-.1 1.5-.1 2.4-1 .7-.7.9-2.4.9-2.4s.2-1.9.2-3.9v-1.7c0-1.9-.2-3.9-.2-3.9zM9.8 15.3V8.7l6.1 3.3-6.1 3.3z"/></svg></a>
+          <a href="#" data-soyal="Линкедин" title="Линкедин" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.2 2.4 4.2 5.4v6.3zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4z"/></svg></a>
+        </div>
+      </div>
+      <div class="hol-bagana">
+        <h3>Танд хэрэгтэй</h3>
+        <a href="#" data-medee="Хүргэлтийн мэдээлэл">Хүргэлтийн мэдээлэл</a>
+        <a href="#" data-medee="Номоо байршуулах">Номоо байршуулах</a>
+        <a href="#" data-medee="Үйлчилгээний нөхцөл">Үйлчилгээний нөхцөл</a>
+        <a href="#" data-medee="Буцаалт">Буцаалт</a>
+        <a href="#" data-medee="Төлбөр төлөх">Төлбөр төлөх</a>
+        <a href="#" data-huudas="salbar">Салбар дэлгүүрүүд</a>
+        <a href="#" data-medee="Номын мэдээ">Номын мэдээ</a>
+        <a href="#" data-medee="Бидний тухай">Бидний тухай</a>
+      </div>
+      <div class="hol-bagana">
+        <h3>Шинэ номын мэдээлэл авах</h3>
+        <p>Та шинэ номын мэдээг тогтмол авахыг хүсвэл мэдээллийн жагсаалтад бүртгүүлнэ үү.</p>
+        <div class="medee-hailt">
+          <input type="text" id="medeeEmail" placeholder="И-мэйл хаягаа оруулна уу...">
+          <button type="button" id="medeeTovch">Бүртгүүлэх</button>
+        </div>
+      </div>
+    </div>
+    <div class="hol-dood">
+      <p>© 2026 Номын Ертөнц. Бүх эрх хуулиар хамгаалагдсан.</p>
+      <p class="powered">Powered by <strong>NEXTSTORE</strong></p>
+      <div class="hol-holboos">
+        <a href="#" data-medee="Нууцлалын бодлого">Нууцлалын бодлого</a>
+        <a href="#" data-medee="Үйлчилгээний нөхцөл">Үйлчилгээний нөхцөл</a>
+        <a href="#" data-medee="Холбоо барих">Холбоо барих</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Номын дэлгэрэнгүй цонх -->
+  <div class="modal-burhus" id="nomModal">
+    <div class="modal delgerengui-modal">
+      <button type="button" class="haah" id="nomModalHaah">×</button>
+      <div class="delgerengui-dotor" id="nomModalDotor"></div>
+    </div>
+  </div>
+
+  <!-- Зохиолчийн танилцуулга цонх -->
+  <div class="modal-burhus" id="zohiolchModal">
+    <div class="modal delgerengui-modal">
+      <button type="button" class="haah" id="zohiolchModalHaah">×</button>
+      <div id="zohiolchModalDotor"></div>
+    </div>
+  </div>
+
+  <!-- Худалдан авалтын цонх -->
+  <div class="modal-burhus" id="tulburModal">
+    <div class="modal orgon">
+      <button type="button" class="haah" id="tulburModalHaah">×</button>
+      <h2>Худалдан авалт</h2>
+      <div id="tulburNomMedee"></div>
+      <form id="tulburForm">
+        <label>Овог<input type="text" id="ovog" placeholder="Овгоо оруулна уу..." required></label>
+        <label>Нэр<input type="text" id="ner" placeholder="Нэрээ оруулна уу..." required></label>
+        <label>Утасны дугаар<input type="text" id="utas" placeholder="Утасны дугаараа оруулна уу..." required></label>
+        <label>И-мэйл<input type="text" id="email" placeholder="И-мэйл хаягаа оруулна уу..." required></label>
+        <label>Хүргэлтийн хот
+          <select id="hurgeltHot" required></select>
+        </label>
+        <label>Дэлгэрэнгүй хаяг<input type="text" id="hayag" placeholder="Хороо, байр, орц, тоот..." required></label>
+        <label id="tooShirhegМөр">Худалдан авах тоо ширхэг<input type="number" id="tooShirheg" value="1" min="1" required></label>
+        <p class="too-анхааруулга" id="tooАнхааруулга" style="display:none;"></p>
+        <label>Төлбөрийн хэлбэр
+          <select id="tolborHelber" required>
+            <option value="Банкны картаар төлөх">Банкны картаар төлөх</option>
+            <option value="QPay-ээр төлөх">QPay-ээр төлөх</option>
+          </select>
+        </label>
+        <div id="hadgalsanKartMor" style="display:none;">
+          <label>Хадгалсан карт
+            <select id="hadgalsanKartSongolt"></select>
+          </label>
+        </div>
+        <div class="kart-tolbor" id="kartTolborBox">
+          <h4>Картаар төлөх</h4>
+          <p class="tolbor-tailbar">Провайдер холбогдоогүй тул бодит гүйлгээ хийгдэхгүй. Картын бүрэн дугаар, CVV хадгалагдахгүй.</p>
+          <label>Карт эзэмшигчийн нэр<input type="text" id="kartNer" placeholder="ж: БАТБАЯР Б" autocomplete="cc-name" maxlength="60"></label>
+          <label>Картын дугаар
+            <span class="kart-duгаар-wrap"><input type="text" id="kartDugaar" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric" autocomplete="cc-number" maxlength="23"><span class="kart-brand" id="kartBrand"></span></span>
+          </label>
+          <div class="kart-mor">
+            <label>Дуусах хугацаа (MM/YY)<input type="text" id="kartHugatsaa" placeholder="MM/YY" inputmode="numeric" autocomplete="cc-exp" maxlength="5"></label>
+            <label>CVV/CVC<input type="password" id="kartCvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc" maxlength="4"></label>
+          </div>
+          <label class="tohirgoo-шалгах"><input type="checkbox" id="kartHadgalah"> Энэ картыг дараагийн худалдан авалтад хадгалах <small>(зөвхөн сүүлийн 4 орон + картын төрөл хадгалагдана)</small></label>
+          <p class="tolbor-алдаа" id="kartАлдаа" style="display:none;"></p>
+        </div>
+        <div class="tolbor-dun">
+          <p>Барааны нийт үнэ: <span id="baraaUne">0₮</span></p>
+          <p>Бэлгийн карт: <span id="belegHasah">0₮</span> <a href="#" id="belegRuu" style="font-size:12px;">код нэмэх</a></p>
+          <p>Хүргэлтийн үнэ: <span id="hurgeltUne">5000₮</span></p>
+          <p><strong>Төлөх нийт дүн: <span id="tolohDun">0₮</span></strong></p>
+          <p class="anharuulga" id="hurgeltТэмдэглэл"></p>
+          <p class="anharuulga">Онлайн төлбөр: банкны карт эсвэл QPay. Провайдер холбогдох хүртэл захиалга “хүлээгдэж буй” төлөвтэй бүртгэгдэнэ.</p>
+        </div>
+        <button type="submit" id="tulburSubmit">Захиалга баталгаажуулах</button>
+      </form>
+              <div class="qpay-box" id="qpayBox" style="display:none;">
+          <h4>QPay-ээр төлөх</h4>
+          <p><strong>Захиалгын дугаар:</strong> <span id="qpayRef">—</span></p>
+          <p><strong>Төлөх дүн:</strong> <span id="qpayDun">0₮</span></p>
+          <div class="qpay-qr-hairtsag" id="qpayQrHairtsag">
+            <div class="qpay-qr" id="qpayQr"></div>
+            <div class="qpay-qr-мэдээлэл" id="qpayQrInfo"></div>
+          </div>
+          <p class="qpay-zaavar">QPay аппликейшнээр QR кодыг уншуулж төлбөрөө хийнэ үү.</p>
+          <div class="qpay-tolov" id="qpayTolov">Төлбөр хүлээгдэж байна…</div>
+          <div class="qpay-setup" id="qpaySetupMsg" style="display:none;">
+          <div class="qpay-setup-icon">🔐</div>
+          <div class="qpay-setup-дэд">
+            <strong>QPay тохиргоо хийгдээгүй байна — QR код одоогоор үүсэхгүй</strong>
+            <p>Бодит, QPay апп дээр уншигдах QR кодыг зөвхөн мерчант тохиргоо бүрдсэний дараа үүсгэнэ. Зохиомол QR код хэрэглэдэггүй.</p>
+            <ul>
+              <li><strong>QP_CODE</strong> — QPay мерчант код</li>
+              <li><strong>QP_SECRET</strong> — мерчант нууц түлхүүр</li>
+              <li><strong>QP_INVOICE_CODE</strong> — инвойсийн код</li>
+              <li><strong>QPAY_CALLBACK_BASE</strong> — вэбхүүкий нийтийн хаяг (заавал биш)</li>
+            </ul>
+            <p class="qpay-setup-note">Тохиргоог сервер дээр орчны хувьсагч болгон тохируулаад “Шинэ QR авах” товчийг дахин дараарай.</p>
+          </div>
+        </div>
+          <p class="tolbor-алдаа" id="qpayАлдаа" style="display:none;"></p>
+          <div class="tohirgoo-tovchnuud">
+            <button type="button" id="qpayШалгах" class="saaral">Төлбөр шалгах</button>
+            <button type="button" id="qpayШинэчлэх" class="saaral">Шинэ QR авах</button>
+          </div>
+        </div>
+        <div id="zahialgaAmjilt" style="display:none; text-align:center; padding:20px;">
+        <h3>Таны захиалга амжилттай баталгаажлаа!</h3>
+        <p>Захиалгын дугаар: <strong id="zahialgaDugaar"></strong></p>
+        <p id="zahialgaTulbur"></p>
+        <p>Танд баярлалаа! Бид тантай удахгүй холбогдоно.</p>
+        <button type="button" id="zahialgaХарах">Миний захиалга харах</button>
+        <button type="button" id="zahialgaHaah" class="saaral">Буцах</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Түрээсийн цонх -->
+  <div class="modal-burhus" id="tureesModal">
+    <div class="modal orgon">
+      <button type="button" class="haah" id="tureesModalHaah">×</button>
+      <h2>Ном түрээслэх</h2>
+      <div id="tureesNomMedee"></div>
+      <form id="tureesForm">
+        <label>Түрээсийн хугацаа
+          <select id="tureesHugatsaa" required></select>
+        </label>
+        <label>Түрээс эхлэх огноо<input type="date" id="tureesEhelsen" required></label>
+        <label>Түрээс дуусах огноо<input type="date" id="tureesDuusah" readonly></label>
+        <label>Түрээслэгчийн нэр<input type="text" id="tureesNer" placeholder="Нэрээ оруулна уу..." required></label>
+        <label>И-мэйл<input type="text" id="tureesEmail" placeholder="И-мэйл хаягаа оруулна уу..." required></label>
+        <label>Утасны дугаар<input type="text" id="tureesUtas" placeholder="Утасны дугаараа оруулна уу..." required></label>
+        <label>Хүргэлт эсвэл авах хэлбэр
+          <select id="tureesHurgelt" required>
+            <option value="хүргэлт">Хүргэлтээр авах</option>
+            <option value="өөрийн">Салбар дээр өөрийн биеэр авах</option>
+          </select>
+        </label>
+        <label id="tureesHotМөр">Хүргэлтийн хот
+          <select id="tureesHot"></select>
+        </label>
+        <label class="tohirgoo-шалгах"><input type="checkbox" id="tureesZuvshuurul" required> <span>Би ном түрээсийн нөхцөлтэй танилцаж, зөвшөөрч байна. (<a href="#" id="tureesNuhTsolLink">журмыг унших</a>)</span></label>
+        <div class="tolbor-dun">
+          <p>Түрээсийн төлбөр: <span id="tureesTulbur">0₮</span></p>
+          <p>Хүргэлтийн үнэ: <span id="tureesHurgeltUne">0₮</span></p>
+          <p>Барьцаа (буцаагдана): <span id="tureesBartsaa">0₮</span></p>
+          <p><strong>Төлөх нийт дүн: <span id="tureesNiit">0₮</span></strong></p>
+          <p class="too-анхааруулга" id="tureesАнхааруулга" style="display:none;"></p>
+          <p class="anharuulga">Энэ нь үзүүлэнгийн төлбөрийн цонх бөгөөд бодит банкны гүйлгээ хийхгүй.</p>
+        </div>
+        <button type="submit" id="tureesSubmit">Түрээс баталгаажуулах</button>
+      </form>
+      <div id="tureesAmjilt" style="display:none; text-align:center; padding:20px;">
+        <h3>Түрээсийн хүсэлт хүлээн авлаа!</h3>
+        <p>Түрээсийн дугаар: <strong id="tureesDugaar"></strong></p>
+        <p>Админ баталгаажуулсны дараа ном олгогдоно.</p>
+        <button type="button" id="tureesХарах">Миний түрээс харах</button>
+        <button type="button" id="tureesHaah" class="saaral">Буцах</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Урьдчилсан үзэх (мини preview) цонх -->
+  <div class="modal-burhus" id="previewModal">
+    <div class="modal orgon preview-modal">
+      <button type="button" class="haah" id="previewHaah">×</button>
+      <div id="previewDotor"></div>
+    </div>
+  </div>
+
+  <!-- Мэдэгдэл -->
+  <div class="medegdel" id="medegdel"></div>
+
+  <script src="qrcode.min.js"></script>
+  <script src="script.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
